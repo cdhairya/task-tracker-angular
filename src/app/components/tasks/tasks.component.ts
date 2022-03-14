@@ -7,9 +7,9 @@ import { Task } from '../../Task';
 })
 export class TasksComponent implements OnInit {
   tasks: Task[] = [];
-  localItem: string = 'hello';
+  localItem: string;
   constructor() {
-    this.localItem = JSON.parse(localStorage.getItem('tasks')!);
+    this.tasks = JSON.parse(localStorage.getItem('tasks') || '{}');
   }
 
   ngOnInit(): void {}
@@ -22,6 +22,11 @@ export class TasksComponent implements OnInit {
   taskToggleActive(task: Task) {
     this.tasks[this.tasks.indexOf(task)].active =
       !this.tasks[this.tasks.indexOf(task)].active;
+    localStorage.setItem('tasks', JSON.stringify(this.tasks));
+  }
+
+  addTask(task: Task) {
+    this.tasks.push(task);
     localStorage.setItem('tasks', JSON.stringify(this.tasks));
   }
 }
