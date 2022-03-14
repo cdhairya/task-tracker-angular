@@ -1,7 +1,7 @@
 <app-add-task (onAddTask)="addTask($event)"></app-add-task>
-<!-- <div *ngIf="this.tasks.length === 0">
+<div *ngIf="this.tasks.length === 0">
   <p>No tasks</p>
-</div> -->
+</div>
 <app-task-item
   *ngFor="let task of tasks"
   [task]="task"
