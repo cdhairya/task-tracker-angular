@@ -9,7 +9,7 @@ export class TasksComponent implements OnInit {
   tasks: Task[] = [];
   localItem: string;
   constructor() {
-    this.tasks = JSON.parse(localStorage.getItem('tasks') || '{}');
+    this.tasks = JSON.parse(localStorage.getItem('tasks') || '[]');
   }
 
   ngOnInit(): void {}

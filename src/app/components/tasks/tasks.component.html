@@ -1,10 +1,10 @@
 <app-add-task (onAddTask)="addTask($event)"></app-add-task>
+<!-- <div *ngIf="this.tasks.length === 0">
+  <p>No tasks</p>
+</div> -->
 <app-task-item
   *ngFor="let task of tasks"
   [task]="task"
   (taskDelete)="taskDelete($event)"
   (taskToggle)="taskToggleActive($event)"
 ></app-task-item>
-<div *ngIf="this.tasks.length === 0">
-  <p>No tasks</p>
-</div>
