@@ -1,6 +1,6 @@
 export class Task{
     id?:number
-    title:string
-    desc: string
+    text:string
+    day: string
     active: boolean
 }
