@@ -1,1 +1,12 @@
-<app-task-item *ngFor="let task of tasks" [task]="task"></app-task-item>
+<app-add-task></app-add-task>
+<div *ngIf="this.tasks.length === 0">
+  <p>No tasks</p>
+</div>
+<ng-template>
+  <app-task-item
+    *ngFor="let task of tasks"
+    [task]="task"
+    (taskDelete)="taskDelete($event)"
+    (taskToggle)="taskToggleActive($event)"
+  ></app-task-item>
+</ng-template>

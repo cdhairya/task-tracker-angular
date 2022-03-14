@@ -1,44 +1,27 @@
 import { Component, OnInit } from '@angular/core';
-import {Task} from '../../Task'
+import { Task } from '../../Task';
 @Component({
   selector: 'app-tasks',
   templateUrl: './tasks.component.html',
-  styleUrls: ['./tasks.component.css']
+  styleUrls: ['./tasks.component.css'],
 })
 export class TasksComponent implements OnInit {
-
-  tasks: Task[];
-
+  tasks: Task[] = [];
+  localItem: string = 'hello';
   constructor() {
-    this.tasks = [
-      {
-        id: 1,
-        text: "Task 1",
-        day: "day 1",
-        active: true
-      },
-      {
-        id: 2,
-        text: "Task 2",
-        day: "day 2",
-        active: false
-      },
-      {
-        id: 3,
-        text: "Task 3",
-        day: "day 3",
-        active: true
-      },
-      {
-        id: 4,
-        text: "Task 4",
-        day: "day 4",
-        active: false
-      }
-    ]
-   }
-
-  ngOnInit(): void {
+    this.localItem = JSON.parse(localStorage.getItem('tasks')!);
   }
 
+  ngOnInit(): void {}
+
+  taskDelete(task: Task) {
+    this.tasks.splice(this.tasks.indexOf(task), 1);
+    localStorage.setItem('tasks', JSON.stringify(this.tasks));
+  }
+
+  taskToggleActive(task: Task) {
+    this.tasks[this.tasks.indexOf(task)].active =
+      !this.tasks[this.tasks.indexOf(task)].active;
+    localStorage.setItem('tasks', JSON.stringify(this.tasks));
+  }
 }
